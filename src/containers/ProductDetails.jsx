@@ -8,12 +8,7 @@ const ProductDetails = () => {
     const { id } = useParams()
     let product = useSelector((state) => state.product)
     const { title, price, description, category, image, rating } = product
-    // const {rate,count} = product.rating
-    // const {count} = rating
-    // console.log(count)
-
     const dispatch = useDispatch()
-
     const getSingleProduct = async () => {
         const response = await axios.get(`https://fakestoreapi.com/products/${id}`).catch((err) => {
             console.log(err)

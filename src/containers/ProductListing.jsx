@@ -3,28 +3,29 @@ import ProductComponent from "./ProductComponent";
 import axios from 'axios'
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setProducts, setCategories } from '../redux/actions/productActions'
+import { setProducts, setCategories, fetchProducts } from '../redux/actions/productActions'
 import Loader from "./Loader";
 
 const ProductListing = () => {
     const products = useSelector((state) => state)
     const dispatch = useDispatch()
-    const fetchProducts = async () => {
-        const response = await axios.get('https://fakestoreapi.com/products').catch((err) => {
-            console.log(err)
-        })
+    // const fetchProducts = async () => {
+    //     const response = await axios.get('https://fakestoreapi.com/products').catch((err) => {
+    //         console.log(err)
+    //     })
 
-        const categories = await axios.get('https://fakestoreapi.com/products/categories').catch((err) => {
-            console.log(err)
-        })
-        // console.log(categories.data)
-        dispatch(setCategories(categories.data))
-        dispatch(setProducts(response.data))
-        // console.log("cats", productCategories)
-    }
+    //     const categories = await axios.get('https://fakestoreapi.com/products/categories').catch((err) => {
+    //         console.log(err)
+    //     })
+    //     // console.log(categories.data)
+    //     dispatch(setCategories(categories.data))
+    //     dispatch(setProducts(response.data))
+    //     // console.log("cats", productCategories)
+    // }
 
     useEffect(() => {
-        fetchProducts()
+       // fetchProducts()
+       dispatch(fetchProducts())
 
     }, [])
     return (
